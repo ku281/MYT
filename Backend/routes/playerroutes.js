@@ -4,5 +4,5 @@ const playerController = require('../controllers/playercontroller');
 const router = express.Router();
 
 router.post('/newplayer', playerController.createNewPlayer);
-
+router.post('/player/fantasy', playerController.createNew)
 module.exports = router;

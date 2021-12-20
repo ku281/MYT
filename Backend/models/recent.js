@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const venueSchema = new Schema({
+const recentSchema = new Schema({
     name: { type: String, required: true },
     recentfantasypoints: [{
         team: { type: String },
@@ -14,4 +14,4 @@ const venueSchema = new Schema({
 )
 
 
-module.exports = mongoose.model("Venue", venueSchema);
+module.exports = mongoose.model("Recent", recentSchema);

@@ -1,5 +1,5 @@
 const Player = require('../models/player');
-
+const Recent = require('../models/recent');
 
 
 const createNewPlayer = async (req, res, next) => {
@@ -18,7 +18,7 @@ const createNewPlayer = async (req, res, next) => {
     const createdPlayer = new Player({
         name,
         dob,
-        batstats: batstats,
+        batstats,
         bowl
     });
 
@@ -31,5 +31,12 @@ const createNewPlayer = async (req, res, next) => {
     res.status(201).json({ name: name });
 }
 
+const createNewRecent = async (req, res, next) => {
+    let { name, recentfantasypoints } = req.body;
+    let n = recentfantasypoints.length;
+    let avgPoints = 0;
+    for (x )
+}
 
 exports.createNewPlayer = createNewPlayer;
+exports.createNewRecent = createNewRecent;
