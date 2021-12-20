@@ -1,3 +1,4 @@
+const { Router } = require('express');
 const Player = require('../models/player');
 const Recent = require('../models/recent');
 
@@ -33,9 +34,28 @@ const createNewPlayer = async (req, res, next) => {
 
 const createNewRecent = async (req, res, next) => {
     let { name, recentfantasypoints } = req.body;
-    let n = recentfantasypoints.length;
+    let n = Object.keys(recentfantasypoints).length;
     let avgPoints = 0;
-    for (x )
+
+    for (x of recentfantasypoints)
+        avgPoints += Number(x.points);
+    avgPoints /= n;
+    let existingPlayer;
+    try {
+        existingPlayer = await Recent.findOne({ name: name });
+    } catch (err) {
+        return next(err);
+    }
+    if (existingPlayer)
+        return next("Player recent Performance exist update instead");
+
+    const createdPlayer = new Recent({
+        name,
+        recentfantasypoints,
+        avg: avgPoints
+    });
+    createdPlayer.save()
+    res.status(201).json(createdPlayer);
 }
 
 exports.createNewPlayer = createNewPlayer;
